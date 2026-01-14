@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur QR Code Pharmacie Océane</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #2e7d32;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .controls {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .controls h2 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #66bb6a;
+            border-radius: 10px;
+            font-size: 16px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        .button {
+            background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .versions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .version-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .version-label {
+            background: #2e7d32;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .mascot {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+        }
+
+        h3 {
+            color: #2e7d32;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .qr-container {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .features {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .alert {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            color: #1565c0;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Générateur QR Code</h1>
+            <p>Pharmacie Océane - Version Professionnelle</p>
+        </div>
+
+        <div class="controls">
+            <h2>⚙️ Configuration</h2>
+            <p style="color: #666; margin-bottom: 15px;">Entre l'URL de ta page principale (celle avec les 2 boutons)</p>
+            <input type="text" 
+                   id="urlInput" 
+                   class="url-input" 
+                   placeholder="https://ariehallouche.github.io/qrcode-pharmacie"
+                   value="https://ariehallouche.github.io/qrcode-pharmacie">
+            <button onclick="generateAllQR()" class="button">🎨 Générer les QR Codes</button>
+            
+            <div id="successMessage" class="alert hidden">
+                <strong>✅ QR Codes générés avec succès !</strong>
+                Clique sur les boutons bleus "Télécharger" sous chaque QR code pour les sauvegarder en haute qualité.
+            </div>
+        </div>
+
+        <div id="qrCodesSection" class="hidden">
+            <div class="versions-grid">
+                <!-- Version 1 -->
+                <div class="version-card">
+                    <div class="version-label"></div>
+                    <div class="mascot">🏥</div>
+                    <h3>Style Wineed</h3>
+                    <div class="qr-container">
+                        <canvas id="qrCanvas1" width="300" height="300"></canvas>
+                    </div>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">📋</div>
+                            <div class="feature-text">Ordonnances</div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">💳</div>
+                            <div class="feature-text">Mutuelle</div>
+                        </div>
+                    </div>
+                    <button onclick="downloadQR(1)" class="button download-btn">
+                        💾 Télécharger (PNG)
+                    </button>
+                </div>
+
+                <!-- Version 2 -->
+                <div class="version-card">
+                    <div class="version-label"></div>
+                    <div style="width: 80px; height: 80px; background: #2e7d32; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 50px; font-weight: bold; border-radius: 10px;">+</div>
+                    <h3>Style Élégant</h3>
+                    <div class="qr-container">
+                        <canvas id="qrCanvas2" width="300" height="300"></canvas>
+                    </div>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">📋</div>
+                            <div class="feature-text">Ordonnances</div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">💳</div>
+                            <div class="feature-text">Mutuelle</div>
+                        </div>
+                    </div>
+                    <button onclick="downloadQR(2)" class="button download-btn">
+                        💾 Télécharger (PNG)
+                    </button>
+                </div>
+
+                <!-- Version 3 -->
+                <div class="version-card" style="background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #43a047 100%); color: white;">
+                    <div class="version-label" style="background: rgba(255,255,255,0.2); border: 2px solid white;"></div>
+                    <h3 style="color: white;">Style Premium</h3>
+                    <div class="qr-container">
+                        <canvas id="qrCanvas3" width="300" height="300"></canvas>
+                    </div>
+                    <div style="margin-top: 20px; font-size: 40px;">
+                        📱 ✉️ 💚
+                    </div>
+                    <button onclick="downloadQR(3)" class="button download-btn">
+                        💾 Télécharger (PNG)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script>
+        let qrCodes = [null, null, null];
+
+        function generateAllQR() {
+            const url = document.getElementById('urlInput').value.trim();
+            
+            if (!url) {
+                alert('⚠️ Veuillez entrer l\'URL de votre page principale');
+                return;
+            }
+
+            if (!url.startsWith('http')) {
+                alert('⚠️ L\'URL doit commencer par https://');
+                return;
+            }
+
+            // Generate QR codes with QRious (better for download)
+            for (let i = 1; i <= 3; i++) {
+                qrCodes[i-1] = new QRious({
+                    element: document.getElementById(`qrCanvas${i}`),
+                    value: url,
+                    size: 300,
+                    foreground: '#2e7d32',
+                    background: '#ffffff',
+                    level: 'H'
+                });
+            }
+
+            // Show QR codes section and success message
+            document.getElementById('qrCodesSection').classList.remove('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+
+            // Scroll to QR codes
+            setTimeout(() => {
+                document.getElementById('qrCodesSection').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function downloadQR(version) {
+            if (!qrCodes[version-1]) {
+                alert('⚠️ Veuillez d\'abord générer les QR codes !');
+                return;
+            }
+
+            const canvas = document.getElementById(`qrCanvas${version}`);
+            const link = document.createElement('a');
+            const versionNames = ['Mascotte', 'Minimaliste', 'Moderne'];
+            
+            link.download = `Pharmacie-Oceane-QR-${versionNames[version-1]}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+
+            // Success feedback
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Téléchargé !';
+            btn.style.background = 'linear-gradient(135deg, #388e3c 0%, #4caf50 100%)';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = 'linear-gradient(135deg, #1976d2 0%, #2196f3 100%)';
+            }, 2000);
+        }
+
+        // Auto-generate on page load
+        window.onload = function() {
+            generateAllQR();
+        };
+    </script>
+</body>
+</html>
