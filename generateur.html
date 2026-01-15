@@ -196,9 +196,10 @@
 
         .plaque1 .scan-text {
             color: #2e7d32;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             margin: 15px 0;
+            line-height: 1.4;
         }
 
         .plaque1 .features {
@@ -282,8 +283,9 @@
         .plaque2 .scan-instruction {
             color: #2e7d32;
             font-weight: 600;
-            font-size: 17px;
+            font-size: 15px;
             margin: 15px 0;
+            line-height: 1.5;
         }
 
         .plaque2 .features {
@@ -377,6 +379,72 @@
             font-size: 40px;
         }
 
+        /* PLAQUE 4 - Noir & Blanc Simple */
+        .plaque4 {
+            background: #ffffff;
+            border: 4px solid #000000;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            width: 400px;
+            height: 550px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .plaque4 h1 {
+            color: #000000;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plaque4 .subtitle-simple {
+            color: #333333;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #000000;
+        }
+
+        .plaque4 .qr-container-simple {
+            background: #ffffff;
+            padding: 20px;
+            border: 3px solid #000000;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px auto;
+        }
+
+        .plaque4 .instruction-simple {
+            color: #000000;
+            font-weight: 600;
+            font-size: 17px;
+            margin: 20px 0 15px 0;
+        }
+
+        .plaque4 .list-simple {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #000000;
+        }
+
+        .plaque4 .list-simple p {
+            color: #000000;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 8px 0;
+            text-align: left;
+            padding-left: 20px;
+        }
+
         canvas {
             display: block;
         }
@@ -413,13 +481,13 @@
                         <div>
                             <div class="mascot">🏥</div>
                             <h1>Pharmacie Océane</h1>
-                            <p class="tagline">Envoyez vos documents en 1 clic !</p>
+                            <p class="tagline">Cher(e)s client(e)s, simplifions-nous la vie !</p>
                         </div>
                         <div>
                             <div class="qr-container">
                                 <canvas id="qrCanvas1" width="200" height="200"></canvas>
                             </div>
-                            <p class="scan-text">📱 Scannez-moi ! ✨</p>
+                            <p class="scan-text">Flashez pour envoyer votre ordonnance ou mutuelle !</p>
                         </div>
                         <div class="features">
                             <div class="feature-item">
@@ -443,13 +511,13 @@
                         <div>
                             <div class="icon-cross">+</div>
                             <h1>Pharmacie Océane</h1>
-                            <p class="subtitle">Transmission sécurisée de documents</p>
+                            <p class="subtitle">Simplifions-nous la vie ensemble !</p>
                         </div>
                         <div>
                             <div class="qr-container">
                                 <canvas id="qrCanvas2" width="200" height="200"></canvas>
                             </div>
-                            <p class="scan-instruction">Scannez pour envoyer vos documents</p>
+                            <p class="scan-instruction">Flashez ce QR code pour envoyer votre ordonnance ou mutuelle</p>
                         </div>
                         <div class="features">
                             <div class="feature-item">
@@ -472,7 +540,7 @@
                     <div class="plaque3" id="plaque3">
                         <div>
                             <h1>📱 PHARMACIE OCÉANE</h1>
-                            <p class="subtitle">Votre pharmacie connectée</p>
+                            <p class="subtitle">Simplifions-nous la vie ensemble !</p>
                         </div>
                         <div>
                             <div class="qr-container">
@@ -481,7 +549,7 @@
                         </div>
                         <div class="instructions">
                             <h3>Comment ça marche ?</h3>
-                            <p>1️⃣ Scannez le QR code<br>
+                            <p>1️⃣ Flashez le QR code<br>
                             2️⃣ Choisissez votre document<br>
                             3️⃣ Envoyez en un clic !</p>
                             <div class="icons-row">📋 💳 ✉️</div>
@@ -489,6 +557,29 @@
                     </div>
                     <button onclick="downloadPlaque(3)" class="button download-btn">
                         💾 Télécharger Plaque Moderne
+                    </button>
+                </div>
+
+                <!-- Plaque 4 - Noir & Blanc Simple -->
+                <div class="plaque-wrapper">
+                    <div class="plaque4" id="plaque4">
+                        <div>
+                            <h1>PHARMACIE OCÉANE</h1>
+                            <p class="subtitle-simple">Cher(e)s client(e)s, simplifions-nous la vie !</p>
+                        </div>
+                        <div>
+                            <div class="qr-container-simple">
+                                <canvas id="qrCanvas4" width="250" height="250"></canvas>
+                            </div>
+                            <p class="instruction-simple">Flashez ce QR code pour envoyer :</p>
+                        </div>
+                        <div class="list-simple">
+                            <p>✓ Votre ordonnance</p>
+                            <p>✓ Votre carte mutuelle</p>
+                        </div>
+                    </div>
+                    <button onclick="downloadPlaque(4)" class="button download-btn">
+                        💾 Télécharger QR Code Simple N&B
                     </button>
                 </div>
             </div>
@@ -517,12 +608,14 @@
 
             // Generate QR codes
             setTimeout(() => {
-                for (let i = 1; i <= 3; i++) {
+                for (let i = 1; i <= 4; i++) {
+                    const size = i === 4 ? 250 : 200; // QR plus grand pour la plaque 4
+                    
                     new QRious({
                         element: document.getElementById(`qrCanvas${i}`),
                         value: url,
-                        size: 200,
-                        foreground: '#2e7d32',
+                        size: size,
+                        foreground: i === 4 ? '#000000' : '#2e7d32', // Noir pour la plaque 4
                         background: '#ffffff',
                         level: 'H'
                     });
@@ -555,7 +648,7 @@
             btn.innerHTML = '⏳ Téléchargement...';
 
             const element = document.getElementById(`plaque${num}`);
-            const plaqueNames = ['Mascotte', 'Minimaliste', 'Moderne'];
+            const plaqueNames = ['Mascotte', 'Minimaliste', 'Moderne', 'Simple-NB'];
 
             try {
                 const canvas = await html2canvas(element, {
